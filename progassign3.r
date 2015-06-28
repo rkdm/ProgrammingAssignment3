@@ -126,6 +126,7 @@ rankhospital <- function(statename,outcomename,num="best") {
         ## ranks first by mortality rate, then by alphabetic
         ##      list of hospital names
     sortedtable <- thisstatedata[rankedlist,]
+    sortedrates <- as.numeric(sortedtable[,thiscondcol])
     rankings <- 1:length(rankedlist)
         ## rankings is just a vector of row numbers
     
@@ -133,8 +134,8 @@ rankhospital <- function(statename,outcomename,num="best") {
         ## minimum rate is in sortedtable[1,]
         output <- sortedtable[1,2]
     } else if (num == "worst") {
-        maxrate <- max(as.numeric(sortedtable[,thiscondcol]),na.rm=TRUE)
-        worstplaces <- sortedtable[which(sortedtable[,thiscondcol] == maxrate),2]
+        maxrate <- max(sortedrates,na.rm=TRUE)
+        worstplaces <- sortedtable[which(sortedrates == maxrate),2]
         output <- worstplaces[1]
     } else if (num > length(rankings)) {
         output <- NA
@@ -148,6 +149,7 @@ rankhospital <- function(statename,outcomename,num="best") {
 ## for submitting the assignment:
 
 ##source("http://d396qusza40orc.cloudfront.net/rprog%2Fscripts%2Fsubmitscript3.R")
+##Course ID   rprog-015
 ##User ID     13173424
 ##Submission Login 	arkadeum@gmail.com
 ##Submission Password 	Q3bC3gwyEN
