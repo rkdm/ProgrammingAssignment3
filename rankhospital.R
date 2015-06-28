@@ -1,5 +1,10 @@
 setwd("C:/Users/Rachel/Documents/coursera-courses/r-programming/ProgrammingAssignment3")
 
+readoutcomedata <- function(file) {
+    outcome <- read.csv(file,colClasses="character")
+    outcome
+}
+
 rankhospital <- function(statename,outcomename,num="best") {
     ## read outcome data
     outcome <- readoutcomedata("outcome-of-care-measures.csv")
